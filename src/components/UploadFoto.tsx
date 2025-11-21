@@ -3,31 +3,39 @@ import { storage } from "../lib/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export default function UploadFoto({ onUpload }) {
-  const [preview, setPreview] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   async function enviarArquivo(e) {
     const file = e.target.files[0];
     if (!file) return;
 
-    setPreview(URL.createObjectURL(file));
+    setLoading(true);
 
-    const storageRef = ref(storage, `presos/${Date.now()}-${file.name}`);
-    await uploadBytes(storageRef, file);
-    const url = await getDownloadURL(storageRef);
+    const caminho = `fotos/${Date.now()}-${file.name}`;
+    const refArquivo = ref(storage, caminho);
 
-    onUpload(url);
+    await uploadBytes(refArquivo, file);
+
+    const url = await getDownloadURL(refArquivo);
+
+    onUpload(url); // devolve a URL da foto
+    setLoading(false);
   }
 
   return (
     <div className="flex flex-col gap-2">
-      {preview && (
-        <img
-          src={preview}
-          className="w-32 h-32 object-cover rounded border"
-        />
-      )}
+      <label className="font-semibold">Foto do preso:</label>
 
-      <input type="file" accept="image/*" onChange={enviarArquivo} />
+      <input
+        type="file"
+        accept="image/*"
+        onChange={enviarArquivo}
+        className="border rounded p-2"
+      />
+
+      {loading && (
+        <p className="text-sm text-gray-600">Enviando foto...</p>
+      )}
     </div>
   );
 }

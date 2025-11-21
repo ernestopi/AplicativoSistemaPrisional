@@ -9,6 +9,10 @@ import EditarPresidio from "./pages/Presidios/Editar";
 import PresosIndex from "./pages/Presos/Index";
 import NovoPreso from "./pages/Presos/Novo";
 import EditarPreso from "./pages/Presos/Editar";
+import UsuariosIndex from "./pages/Usuarios/Index";
+import UsuarioNovo from "./pages/Usuarios/Novo";
+import UsuarioEditar from "./pages/Usuarios/Editar";
+
 
 export default function App() {
   return (
@@ -32,6 +36,10 @@ export default function App() {
           <Route path="presos" element={<PresosIndex />} />
           <Route path="presos/novo" element={<NovoPreso />} />
           <Route path="presos/editar/:id" element={<EditarPreso />} />
+          <Route path="usuarios" element={<UsuariosIndex />} />
+          <Route path="usuarios/novo" element={<UsuarioNovo />} />
+          <Route path="usuarios/editar/:id" element={<UsuarioEditar />} />
+
         </Route>
 
         <Route path="*" element={<Login />} />

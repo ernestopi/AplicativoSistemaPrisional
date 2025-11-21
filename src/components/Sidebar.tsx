@@ -8,6 +8,7 @@ export default function Sidebar() {
       <nav className="flex flex-col gap-4">
         <Link to="/presidios" className="hover:text-emerald-400">Presídios</Link>
         <Link to="/presos" className="hover:text-emerald-400">Presos</Link>
+        <Link to="/usuarios" className="hover:text-emerald-400">Usuários</Link>
       </nav>
     </aside>
   );

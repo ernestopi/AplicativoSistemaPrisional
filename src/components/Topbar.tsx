@@ -12,6 +12,13 @@ export default function Topbar() {
 
   return (
     <header className="w-full h-14 bg-white shadow flex items-center px-6 justify-between">
+      <button type="button"
+        onClick={() => nav(-1)}
+        className="bg-gray-500 text-white px-4 py-1 rounded"
+      >
+        Voltar
+      </button>
+
       <span className="font-semibold">Painel Administrativo</span>
 
       <button
