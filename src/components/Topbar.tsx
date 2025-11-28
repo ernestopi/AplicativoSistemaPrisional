@@ -1,3 +1,4 @@
+// src/components/Topbar.tsx
 import { auth } from "../lib/firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -43,6 +44,8 @@ export default function Topbar() {
           <button
             onClick={() => setShowNotifications(!showNotifications)}
             className="relative p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+            aria-expanded={showNotifications}
+            aria-haspopup="true"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -81,7 +84,14 @@ export default function Topbar() {
                 ))}
               </div>
               <div className="px-4 py-2 border-t border-gray-200">
-                <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+                <button
+                  onClick={() => {
+                    // Exemplo: navegar para uma página de todas as notificações
+                    setShowNotifications(false);
+                    nav("/notificacoes");
+                  }}
+                  className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                >
                   Ver todas
                 </button>
               </div>
@@ -94,6 +104,8 @@ export default function Topbar() {
           <button
             onClick={() => setShowProfile(!showProfile)}
             className="flex items-center gap-3 p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
+            aria-expanded={showProfile}
+            aria-haspopup="true"
           >
             <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
               {auth.currentUser?.email?.charAt(0).toUpperCase() || 'U'}
@@ -118,17 +130,37 @@ export default function Topbar() {
                 </p>
                 <p className="text-xs text-gray-500 mt-0.5">Admin</p>
               </div>
+
               <div className="py-1">
-                <button className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+                {/* Meu Perfil - navega e fecha dropdown */}
+                <button
+                  onClick={() => {
+                    setShowProfile(false);
+                    nav("/usuarios/perfil");
+                  }}
+                  className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
+                >
                   <span>👤</span> Meu Perfil
                 </button>
-                <button className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+
+                {/* Configurações - exemplo de navegação */}
+                <button
+                  onClick={() => {
+                    setShowProfile(false);
+                    nav("/configuracoes");
+                  }}
+                  className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
+                >
                   <span>⚙️</span> Configurações
                 </button>
               </div>
+
               <div className="border-t border-gray-200 py-1">
                 <button
-                  onClick={sair}
+                  onClick={() => {
+                    setShowProfile(false);
+                    sair();
+                  }}
                   className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 flex items-center gap-2"
                 >
                   <span>🚪</span> Sair
@@ -141,38 +173,3 @@ export default function Topbar() {
     </header>
   );
 }
-
-
-
-// import { auth } from "../lib/firebase";
-// import { signOut } from "firebase/auth";
-// import { useNavigate } from "react-router-dom";
-
-// export default function Topbar() {
-//   const nav = useNavigate();
-
-//   async function sair() {
-//     await signOut(auth);
-//     nav("/login");
-//   }
-
-//   return (
-//     <header className="w-full h-14 bg-blue-50 shadow flex items-center px-6 justify-between">
-//       <button type="button"
-//         onClick={() => nav(-1)}
-//         className="bg-gray-500 text-white px-4 py-1 rounded"
-//       >
-//         Voltar
-//       </button>
-
-//       <span className="font-semibold">Painel Administrativo</span>
-
-//       <button
-//         onClick={sair}
-//         className="bg-red-500 text-white px-4 py-1 rounded"
-//       >
-//         Sair
-//       </button>
-//     </header>
-//   );
-// }

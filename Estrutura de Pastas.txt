@@ -1,0 +1,27 @@
+src/
+├── lib/
+│   ├── firebase.js          # Configuração Firebase
+│   └── conferenceService.js # Serviço de conferências
+├── pages/
+│   ├── Auth/
+│   │   └── Login.tsx
+│   ├── Presidios/
+│   │   ├── Index.tsx
+│   │   ├── Novo.tsx
+│   │   └── Editar.tsx
+│   ├── Presos/
+│   │   ├── Index.tsx
+│   │   ├── Novo.tsx
+│   │   └── Editar.tsx
+│   ├── Usuarios/
+│   │   ├── Index.tsx
+│   │   ├── Novo.tsx
+│   │   └── Editar.tsx
+│   └── Conferencias/
+│       └── Index.tsx
+└── components/
+    ├── Layout.tsx
+    ├── Sidebar.tsx
+    ├── Topbar.tsx
+    ├── ProtectedRoute.tsx
+    └── UploadFoto.tsx

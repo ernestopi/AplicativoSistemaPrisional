@@ -6,12 +6,18 @@ import Login from "./pages/Auth/Login";
 import PresidioIndex from "./pages/Presidios/Index";
 import PresidioNovo from "./pages/Presidios/Novo";
 import EditarPresidio from "./pages/Presidios/Editar";
+
 import PresosIndex from "./pages/Presos/Index";
 import NovoPreso from "./pages/Presos/Novo";
 import EditarPreso from "./pages/Presos/Editar";
+
 import UsuariosIndex from "./pages/Usuarios/Index";
 import UsuarioNovo from "./pages/Usuarios/Novo";
 import UsuarioEditar from "./pages/Usuarios/Editar";
+import PerfilUsuario from "./pages/Usuarios/Perfil/Index";
+import Relatorios from "./pages/Relatorios/Index";
+
+
 
 
 export default function App() {
@@ -33,12 +39,16 @@ export default function App() {
           <Route path="presidios" element={<PresidioIndex />} />
           <Route path="presidios/novo" element={<PresidioNovo />} />
           <Route path="presidios/editar/:id" element={<EditarPresidio />} />
+
           <Route path="presos" element={<PresosIndex />} />
           <Route path="presos/novo" element={<NovoPreso />} />
           <Route path="presos/editar/:id" element={<EditarPreso />} />
+          
           <Route path="usuarios" element={<UsuariosIndex />} />
           <Route path="usuarios/novo" element={<UsuarioNovo />} />
           <Route path="usuarios/editar/:id" element={<UsuarioEditar />} />
+          <Route path="usuarios/perfil" element={<PerfilUsuario />} />
+          <Route path="relatorios" element={<Relatorios />} />
 
         </Route>
 
